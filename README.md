@@ -1,9 +1,9 @@
 Project for CSCI 3308
 =====================
 
-# Project Ideas
+# Ideas
 
-## Austin's Ideas
+## Austin's
 
 - **Embedded test frontend**
     - Would talk to some (extremely) light-weight firmmare on an embedded
