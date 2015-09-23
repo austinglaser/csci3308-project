@@ -34,7 +34,8 @@ Project for CSCI 3308
     - whatever
      
 ## Jon's idea
-- ** Web/mobile app that takes product and searches Amazon, Newegg, tigerdirect etc. for lowest price **
+
+- **Web/mobile app that takes product and searches Amazon, Newegg, tigerdirect etc. for lowest price**
     - Could keep track of prices over time (lows, highs)
     - Could keep list of desired items
     - Could notify user (via email?) when best deal found 
