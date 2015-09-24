@@ -4,8 +4,7 @@
 * Austin Glaser
 * Joseph Vostrejs
 
-# Title
-Outletify
+# Title: Outletify
 
 # Description
 Outletify provides two key features: energy usage tracking, and home
@@ -70,7 +69,7 @@ more people to maximize their energy efficiency.
             to implement them in parallel.
 
 # VCS
-* GitHub
+### Github
 * https://github.com/austinglaser/csci3308-project
 
 # Requirements
@@ -79,7 +78,7 @@ more people to maximize their energy efficiency.
 * Agile
 
 # Project Tracking software
-* Trello
+### Trello
 * https://trello.com/methodsandtools
 
 # Project plan
