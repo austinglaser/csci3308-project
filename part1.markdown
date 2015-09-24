@@ -5,7 +5,7 @@
 * Joseph Vostrejs
 
 # Title
-Outlet Phi
+Outletify
 
 # Description
 Automation/usage stats
