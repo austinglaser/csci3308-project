@@ -23,9 +23,11 @@ Automation/usage stats
 # Requirements
 
 # Methodology
+* Agile
 
 # Project Tracking software
 * Trello
+* https://trello.com/methodsandtools
 
 # Project plan
 
