@@ -8,9 +8,23 @@
 Outletify
 
 # Description
-Automation/usage stats
+Outletify provides two key features: energy usage tracking, and home
+automation. Two distinct hardware components will make up a single Outletify
+system. Microcontrollers integrate with outlets to allow for low level control
+and usage detection, and a central server will be the main point of control for
+all microcontrollers. Energy usage tracking features will monitor and log the
+times outlets are in use, and the server will collect data and present it to
+the user with straightforward graphics and statistics over a web interface.
+This same web application will also serve as a hub for all home automation
+capabilities, allowing the user to control and automate household activities
+and appliances. By scheduling regular tasks and logging historical usage,
+Outletify will grant users finer control over their house - what's running,
+and what isn't.
 
 # Vision statement
+Outletify is the simplest way to manage and monitor all the household
+technology you depend on. Lower your bills, reduce your environmental
+footprint, and make your life easier by leaving menial tasks to the machines.
 
 # Motivation
 Many people today are concerned with managing their energy usage, whether
