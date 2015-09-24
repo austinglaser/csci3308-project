@@ -73,6 +73,9 @@ more people to maximize their energy efficiency.
 * https://github.com/austinglaser/csci3308-project
 
 # Requirements
+![User Requirements](req_user.png)
+![Functional Requirements](req_functional.png)
+![Nonfunctional Requirements](req_nonfunctional.png)
 
 # Methodology
 * Agile
@@ -82,4 +85,5 @@ more people to maximize their energy efficiency.
 * https://trello.com/methodsandtools
 
 # Project plan
+![Project Plan in Trello](trello.png)
 
