@@ -49,7 +49,10 @@ def application(env, start_response):
     req_uri = env['REQUEST_URI']
     if len(req_uri) > 1 and '?' not in req_uri:
         filename = req_uri[1:]
-        return open(filename).read()
+        try:
+            return open(filename).read()
+        except:
+            return []
 
     queries = parse_qs(env['QUERY_STRING'])
     if dict_contains(queries, 'insert', 'id', 'field'):
