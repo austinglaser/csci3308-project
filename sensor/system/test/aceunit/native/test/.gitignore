@@ -1,0 +1,16 @@
+# Test generated files
+*.d
+*.o
+*.gcda
+*.gcno
+alltests.txt
+Suite*.c
+
+# All headers except Config
+*.h
+!AceUnitConfig.h
+
+# Executables
+RunTests
+TryExceptionHandling
+AceUnitMain

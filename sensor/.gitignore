@@ -1,0 +1,6 @@
+# Generated Directories
+build/
+
+# Eclipse files
+.project
+.cproject
