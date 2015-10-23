@@ -40,6 +40,10 @@ void debug_init(void)
     };
 
     sdStart(&SD1, &debug_serial_config);
+
+    palSetPadMode(GPIOA,  9, PAL_MODE_ALTERNATE(7));
+    palSetPadMode(GPIOA, 10, PAL_MODE_ALTERNATE(7));
+
 #endif
 }
 
