@@ -1,24 +1,8 @@
 import sqlite3
 from urlparse import parse_qs
 import matplotlib.pyplot as plt
-
-def connect():
-    con = sqlite3.connect('test.db')
-    cur = con.cursor()
-    return (con, cur)
-
-def add_row(ident, field):
-    con, cur = connect()
-    cur.execute("INSERT INTO MyTable VALUES (?, ?);", (int(ident), str(field)))
-    con.commit()
-    con.close()
-
-def query_by_id(ident):
-    con, cur = connect()
-    cur.execute("SELECT * FROM MyTable WHERE Id = ?;", (int(ident),))
-    ret = cur.fetchall()
-    con.close()
-    return ret
+import db_interface as db
+import plot
 
 def dict_contains(d, *args):
     for arg in args:
@@ -26,13 +10,7 @@ def dict_contains(d, *args):
             return False
     return True
 
-TMP_PLOT_NAME = 'tmp_plot.png'
-
-def make_tmp_plot(ys):
-    fig, ax = plt.subplots(nrows=1, ncols=1)
-    ax.plot(list(range(0, len(ys))), ys)
-    fig.savefig(TMP_PLOT_NAME)
-    plt.close(fig)
+TMP_PLOT_NAME = 'Usage_Plot.png'
 
 cached_files = {}
 def get_cached_file(filename):
@@ -55,17 +33,19 @@ def application(env, start_response):
             return []
 
     queries = parse_qs(env['QUERY_STRING'])
-    if dict_contains(queries, 'insert', 'id', 'field'):
-        ident = queries['id'][0]
-        field = queries['field'][0]
-        add_row(ident, field)
-        ret = '<p>Inserted row: Id = {}, Field = {}</p>'.format(ident, field)
-    elif dict_contains(queries, 'query', 'id'):
-        query = query_by_id(queries['id'][0])
-        ints = []
+    if dict_contains(queries, 'insert', 'timestamp', 'usage'):
+        ts = queries['timestamp'][0]
+        usage = queries['usage'][0]
+        db.add_row(ts, usage)
+        ret = '<p>Inserted row: timestamp = {}, usage = {}</p>'.format(ts, usage)
+    elif dict_contains(queries, 'query', 'timestamp'):
+        query = db.query_by_timestamp(queries['timestamp'][0])
+        timestamps = []
+        usage = []
         for val in query:
-            ints.append(int(val[1]))
-        make_tmp_plot(ints)
+            timestamps.append(int(val[0]))
+            usage.append(int(val[1]))
+        plot.make_plot(timestamps, usage)
         ret = "<img src='{}' alt='plot' />".format(TMP_PLOT_NAME)
     return get_cached_file('index.html').replace('##VAL##', ret, 1)
 

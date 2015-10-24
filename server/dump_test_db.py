@@ -1,6 +1,6 @@
 import sqlite3 as lite
 
-con = lite.connect('test.db')
+con = lite.connect('outletify.db')
 cur = con.cursor()
 rows = cur.execute("SELECT * FROM sqlite_master;")
 for x in rows.fetchall():
@@ -8,7 +8,7 @@ for x in rows.fetchall():
 
 print('')
 
-rows = cur.execute("SELECT * FROM MyTable;")
+rows = cur.execute("SELECT * FROM usage_stats;")
 for x in rows.fetchall():
     print(x)
 con.close()
