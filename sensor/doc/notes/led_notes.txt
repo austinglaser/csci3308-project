@@ -1,0 +1,22 @@
+# Timer Channel Allocation
+ - LED chain on TIM2_CH1 (PA0 AF1)
+
+# DMA Channels
+ - TIM2_UP:  DMA1_CH2
+ - TIM2_CH1: DMA1_CH5
+ - TIM2_CH2: DMA1_CH7
+ - TIM2_CH3: DMA1_CH1
+ - TIM2_CH4: DMA1_CH7
+
+# Configuration
+ - PA0 configured as AF1, TIM2_CH1 CC output
+ - Timer in PWM mode
+ - TIM2_CCA1: 1 period, 0 period, reset (0)
+ - Set OC1PE (preload enable)
+ - DMA next bit on update event (starting with bit 1 on UEV 0)
+ - To start:
+    -- Preload CCA1 with bit 0
+    -- Start timer
+ - How to stop?
+    -- Look at slave mode
+    -- Maybe don't need to stop (write frames as fast as possible)
