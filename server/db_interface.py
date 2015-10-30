@@ -2,10 +2,26 @@ import sqlite3 as lite
 
 DB_NAME = 'outletify.db'
 
-def connect():
-    con = lite.connect(DB_NAME)
+def connect(name=DB_NAME):
+    con = lite.connect(name)
     cur = con.cursor()
     return (con, cur)
+
+def close_handle(dbhandle):
+    dbhandle[0].close()
+
+def create_outletify_tables(dbhandle=None):
+    if dbhandle is None:
+        close_con = True
+        con, cur = connect()
+    else:
+        close_con = False
+        con, cur = dbhandle
+
+    cur.execute("CREATE TABLE `usage_stats`(`timestamp` INT, `usage` INT);")
+
+    if close_con:
+        con.close()
 
 def add_row(timestamp, usage, dbhandle=None):
     if dbhandle is None:
@@ -22,6 +38,12 @@ def add_row(timestamp, usage, dbhandle=None):
         con.close()
 
 def query_by_timestamp(timestamp, dbhandle=None):
+    '''
+    Returns usage entries for the given timestamp(s)
+
+    timestamp is either an int or (int, int) representing an inclusive range of
+    timestamps.
+    '''
     if dbhandle is None:
         close_con = True
         con, cur = connect()
