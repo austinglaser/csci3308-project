@@ -11,11 +11,8 @@ ROOT_DIR	:= $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 
 PROJECT		:= outletify-sensor
 
-REVISION	?= 01
-NODE		?= 4
-
 DEBUG		?= true
-TEST		?= true
+TEST		?= false
 
 # --- PROJECT DIRECTORIES ---------------------------------------------------- #
 
