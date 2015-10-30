@@ -29,8 +29,12 @@ def query_by_timestamp(timestamp, dbhandle=None):
         close_con = False
         con, cur = dbhandle
 
-    cur.execute("SELECT * FROM usage_stats WHERE timestamp = ?;", (int(timestamp),))
-    ret = cur.fetchall()
+    if type(timestamp) == int:
+        cur.execute("SELECT * FROM usage_stats WHERE timestamp = ?;", (int(timestamp),))
+        ret = cur.fetchall()
+    elif type(timestamp) == tuple:
+        cur.execute("SELECT * FROM usage_stats WHERE timestamp >= ? AND timestamp <= ?;", (int(timestamp[0]), int(timestamp[1])))
+        ret = cur.fetchall()
 
     if close_con:
         con.close()
