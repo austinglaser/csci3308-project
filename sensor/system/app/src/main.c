@@ -89,11 +89,6 @@ int main(void) {
     // Application init
     debug_init();
 
-    #if defined(TEST)
-    // Self test
-    test();
-    #endif
-
     static uint8_t buffer[BUF_LEN + 1] = { [0 ... BUF_LEN] = '\0'};
     static uint32_t buf_index = 0;
 
