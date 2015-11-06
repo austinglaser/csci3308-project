@@ -23,6 +23,34 @@ def create_outletify_tables(dbhandle=None):
     if close_con:
         con.close()
 
+def dump_contents(dbhandle=None):
+    if dbhandle is None:
+        close_con = True
+        con, cur = connect()
+    else:
+        close_con = False
+        con, cur = dbhandle
+
+    def rows_to_array(rows):
+        ret = []
+        for r in rows.fetchall():
+            ret.append(r)
+        return ret
+
+    ret = []
+    rows = rows_to_array(cur.execute("SELECT * FROM sqlite_master"))
+    ret.append('length_1: {}'.format(len(rows)))
+    for x in rows:
+        ret.append(x)
+    rows = rows_to_array(cur.execute("SELECT * FROM usage_stats;"))
+    ret.append('length_2: {}'.format(len(rows)))
+    for x in rows:
+        ret.append(x)
+
+    if close_con:
+        con.close()
+    return ret
+
 def add_row(timestamp, usage, dbhandle=None):
     if dbhandle is None:
         close_con = True
