@@ -25,6 +25,14 @@ def run_with_outletify_db(f):
         os.remove(dbname)
 
 class TestDBMethods(unittest.TestCase):
+    def test_create_db(self):
+        def runtest(dbhandle):
+            rows = db.dump_contents(dbhandle)
+            self.assertEqual(rows[0], 'length_1: 1')
+            self.assertEqual(rows[1], (u'table', u'usage_stats', u'usage_stats', 2, u'CREATE TABLE `usage_stats`(`timestamp` INT, `usage` INT)'))
+            self.assertEqual(rows[2], 'length_2: 0')
+        run_with_outletify_db(runtest)
+
     def test_add_query(self):
         def runtest(dbhandle):
             for i in range(100):
