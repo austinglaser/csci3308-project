@@ -24,7 +24,7 @@
 #include "debug.h"
 
 #if defined(TEST)
-#include "test.h"
+#include "microunit.h"
 #endif
 
 /* --- PRIVATE DATATYPES ---------------------------------------------------- */

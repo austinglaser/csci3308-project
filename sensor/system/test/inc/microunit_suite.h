@@ -35,7 +35,7 @@ typedef struct {
     const char *        name;       /**< The suite's name */
     uint32_t            n_tests;    /**< Number of tests tests */
     microunit_test_t *  tests;      /**< Array of tests in the suite */
-} microunint_suite_t;
+} microunit_suite_t;
 
 /* --- PUBLIC MACROS -------------------------------------------------------- */
 

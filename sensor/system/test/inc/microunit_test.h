@@ -77,10 +77,20 @@ typedef struct {
  * @param[in] body:     The test's body function
  * @param[in] teardown: The test's teardown function
  */
-#define MICROUNIT_TEST(setup, body, teardown)       { .name = #body,    .setup = (setup),   .body = (body), .teardown = (teardown) },
+#define MICROUNIT_TEST(setup, body, teardown)       {                          \
+                                                        .name = #body,         \
+                                                        .setup = (setup),      \
+                                                        .body = (body),        \
+                                                        .teardown = (teardown) \
+                                                    },
 
 /**@brief   Close out an array of tests */
-#define MICROUNIT_TEST_ARRAY_END()                  { .name = NULL,     .setup = NULL,      .body = NULL,   .teardown = NULL} \
+#define MICROUNIT_TEST_ARRAY_END()                  {                    \
+                                                        .name = NULL,    \
+                                                        .setup = NULL,   \
+                                                        .body = NULL,    \
+                                                        .teardown = NULL \
+                                                    }                    \
                                                 }
 
 /**@brief   Determine whether an element in a test array is the array terminator
@@ -89,8 +99,7 @@ typedef struct {
  */
 #define MICROUNIT_TEST_IS_ARRAY_TERM(test)      (((test).setup == NULL)     && \
                                                  ((test).body == NULL)      && \
-                                                 ((test).teardown == NULL)     \
-                                                )
+                                                 ((test).teardown == NULL))
 
 /**@brief   Assert @condition evaluates to logical true
  *
@@ -107,10 +116,10 @@ typedef struct {
  * @param[in] condition:    The condition to be verified
  * @param[in] message:      Message describing the failure
  */
-#define microunit_assert_msg(condition, message)            do {                                                           \
-                                                                if (!(condition)) {                                        \
+#define microunit_assert_msg(condition, message)            do {                                                        \
+                                                                if (!(condition)) {                                     \
                                                                     microunit_test_fail("Assertion failure: " message); \
-                                                                }                                                          \
+                                                                }                                                       \
                                                             } while (0)
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */

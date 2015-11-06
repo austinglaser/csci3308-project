@@ -41,6 +41,9 @@ include $(SYSTEM_DIR)/drivers/drivers.mk
 include $(SYSTEM_DIR)/app/app.mk
 
 # Test
+include $(SYSTEM_DIR)/test/test.mk
+
+# Test
 ifeq ($(TEST), true)
 include $(SYSTEM_DIR)/test/test.mk
 endif

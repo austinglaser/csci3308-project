@@ -11,7 +11,7 @@
  * @{
  */
 
-/**@defgroup MICROUNIT_UTIL MicrounitUtil
+/**@defgroup MICROUNIT_UTIL MicroUnit Utilities
  * @{ 
  *
  * @brief Utility functions for MicroUnit
@@ -31,10 +31,28 @@
  *
  * @warning Cannot be used on arrays passed as pointers, function parameters, etc
  */
-#define MICROUNIT_ARRRAY_ELEMS(arr)     (sizeof(arr)/sizeof((arr)[0]))
+#define MICROUNIT_ARRAY_ELEMS(arr)      (sizeof(arr)/sizeof((arr)[0]))
+
+#define MICROUNIT_DBG_CHECK(condition)  do {                                                                                                               \
+                                            if (!(condition)) {                                                                                            \
+                                                microunit_internal_assertion_failure(__FILE__ ":" __LINE__ ": MicroUnit internal assertion: " #condition); \
+                                            }                                                                                                              \
+                                        } while(0)
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
+
+/**@brief   Called on failure of an internal (non-test) assertion
+ *
+ * @note    Overrideable by user
+ */
+void microunit_internal_assertion_failure(char * message) __attribute((weak));
+
+/**@brief   Called to display a string
+ *
+ * @note    Overrideable by user
+ */
+void microunit_print_string(char * string) __attribute((weak));
 
 /** @} defgroup MICROUNIT_UTIL */
 /** @} addtogroup MICROUNIT */
