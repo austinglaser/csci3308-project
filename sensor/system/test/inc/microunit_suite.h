@@ -23,7 +23,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-// Microunit submodules
+// Microunit
+#include "microunit.h"
 #include "microunit_test.h"
 
 /* --- PUBLIC CONSTANTS ----------------------------------------------------- */
@@ -31,6 +32,7 @@
 
 /**@brief   A suite of tests */
 typedef struct {
+    const char *        name;       /**< The suite's name */
     uint32_t            n_tests;    /**< Number of tests tests */
     microunit_test_t *  tests;      /**< Array of tests in the suite */
 } microunint_suite_t;
@@ -45,13 +47,20 @@ typedef struct {
  * @param[in] name:     The name of the declared object
  * @param[in] tests:    The suite's array of tests
  */
-#define MICROUNIT_SUITE_DECL(name, tests)   static microunit_suite_t name = {                       \
-                                                .n_tests        = MICROUNIT_ARRAY_ELEMS(tests - 1); \
-                                                .tests          = tests;                            \
-                                            }
+#define MICROUNIT_SUITE(name, tests)    static microunit_suite_t name = {                       \
+                                            .name           = #name                             \
+                                            .n_tests        = MICROUNIT_ARRAY_ELEMS(tests - 1); \
+                                            .tests          = tests;                            \
+                                        }
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
+
+/**@brief   Run all tests in @p suite
+ *
+ * @param[in] suite:    Pointer to the suite to run
+ */
+void microunit_run_suite(microunit_suite_t * suite);
 
 /** @} defgroup MICROUNIT_SUITE */
 /** @} addtogroup MICROUNIT */
