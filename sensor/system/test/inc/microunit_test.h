@@ -105,10 +105,10 @@ typedef struct {
  *
  * @param[in] condition:    The condition to be verified
  */
-#define microunit_assert(condition)                         do {                                                           \
-                                                                if (!(condition)) {                                        \
-                                                                    microunit_test_fail("Assertion failure: " #condition); \
-                                                                }                                                          \
+#define microunit_assert(condition)                         do {                                                       \
+                                                                if (!(condition)) {                                    \
+                                                                    microunit_test_fail(MICROUNIT_AT ": " #condition); \
+                                                                }                                                      \
                                                             } while (0)
 
 /**@brief   Assert @condition evaluates to logical true
@@ -116,10 +116,10 @@ typedef struct {
  * @param[in] condition:    The condition to be verified
  * @param[in] message:      Message describing the failure
  */
-#define microunit_assert_msg(condition, message)            do {                                                        \
-                                                                if (!(condition)) {                                     \
-                                                                    microunit_test_fail("Assertion failure: " message); \
-                                                                }                                                       \
+#define microunit_assert_msg(condition, message)            do {                                                     \
+                                                                if (!(condition)) {                                  \
+                                                                    microunit_test_fail(MICROUNIT_AT ": "  message); \
+                                                                }                                                    \
                                                             } while (0)
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */

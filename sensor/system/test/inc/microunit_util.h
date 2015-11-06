@@ -33,10 +33,14 @@
  */
 #define MICROUNIT_ARRAY_ELEMS(arr)      (sizeof(arr)/sizeof((arr)[0]))
 
-#define MICROUNIT_DBG_CHECK(condition)  do {                                                                                                               \
-                                            if (!(condition)) {                                                                                            \
-                                                microunit_internal_assertion_failure(__FILE__ ":" __LINE__ ": MicroUnit internal assertion: " #condition); \
-                                            }                                                                                                              \
+#define MICROUNIT_STRINGIFY(sym)        #sym
+
+#define MICROUNIT_AT                    __FILE__ ":" MICROUNIT_STRINGIFY(__LINE__)
+
+#define MICROUNIT_DBG_CHECK(condition)  do {                                                                                                  \
+                                            if (!(condition)) {                                                                               \
+                                                microunit_internal_assertion_failure(MICROUNIT_AT ": MicroUnit internal error: " #condition); \
+                                            }                                                                                                 \
                                         } while(0)
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
