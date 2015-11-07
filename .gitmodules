@@ -1,0 +1,4 @@
+[submodule "chibios"]
+	path = sensor/chibios
+	url = git@github.com:ChibiOS/ChibiOS.git
+	branch = stable_3.0.x
