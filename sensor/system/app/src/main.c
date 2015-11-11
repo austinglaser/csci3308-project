@@ -22,7 +22,6 @@
 
 // Application
 #include "debug.h"
-#include "testtest.h"
 
 #if defined(TEST)
 #include "microunit.h"
@@ -89,8 +88,6 @@ int main(void) {
 
     // Application init
     debug_init();
-
-    testtest();
 
     static uint8_t buffer[BUF_LEN + 1] = { [0 ... BUF_LEN] = '\0'};
     static uint32_t buf_index = 0;
