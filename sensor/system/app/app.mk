@@ -27,6 +27,7 @@ APP_SRC		:=
 APP_SRC		+= $(APP_SRC_DIR)/main.c
 APP_SRC		+= $(APP_SRC_DIR)/debug.c
 APP_SRC		+= $(APP_SRC_DIR)/microunit_port.c
+APP_SRC		+= $(APP_SRC_DIR)/testtest.c
 
 # --- APP ASSEMBLY ----------------------------------------------------------- #
 

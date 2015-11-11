@@ -1,7 +1,7 @@
 /**
  * @file    microunit_suite.h
  * @author  Austin Glaser <austin@boulderes.com>
- * @brief   MicroUnit Test Suite  Interface
+ * @brief   MicroUnit Test Suite Interface
  */
 
 #ifndef MICROUNIT_SUITE_H
@@ -19,13 +19,12 @@
 
 /* --- PUBLIC DEPENDENCIES -------------------------------------------------- */
 
+// This module
+#include "microunit.h"
+
 // Standard
 #include <stdint.h>
 #include <stdbool.h>
-
-// Microunit
-#include "microunit.h"
-#include "microunit_test.h"
 
 /* --- PUBLIC CONSTANTS ----------------------------------------------------- */
 /* --- PUBLIC DATATYPES ----------------------------------------------------- */
@@ -44,14 +43,14 @@ typedef struct {
  * @note    Ensure that @p tests was declared by the MicroUnit Test declaration
  *          macros
  *
- * @param[in] name:     The name of the declared object
- * @param[in] tests:    The suite's array of tests
+ * @param[in] suite:    The name of the declared object
+ * @param[in] tests_arr: The suite's array of tests
  */
-#define MICROUNIT_SUITE(name, tests)    static microunit_suite_t name = {                       \
-                                            .name           = #name                             \
-                                            .n_tests        = MICROUNIT_ARRAY_ELEMS(tests - 1); \
-                                            .tests          = tests;                            \
-                                        }
+#define MICROUNIT_SUITE(suite, tests_arr)  static microunit_suite_t suite = {                       \
+                                                .name           = #suite,                           \
+                                                .n_tests        = MICROUNIT_ARRAY_ELEMS(tests_arr), \
+                                                .tests          = tests_arr                         \
+                                            }
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */

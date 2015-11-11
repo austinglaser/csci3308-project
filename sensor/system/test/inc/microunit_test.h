@@ -19,12 +19,13 @@
 
 /* --- PUBLIC DEPENDENCIES -------------------------------------------------- */
 
+// This Module
+#include "microunit.h"
+
 // Standard
 #include <stdint.h>
 #include <stdbool.h>
-
-// Microunit
-#include "microunit.h"
+#include <stdlib.h>
 
 /* --- PUBLIC CONSTANTS ----------------------------------------------------- */
 /* --- PUBLIC DATATYPES ----------------------------------------------------- */
@@ -61,54 +62,29 @@ typedef struct {
 
 /* --- PUBLIC MACROS -------------------------------------------------------- */
 
-/**@brief   Declare an array of tests
- *
- * The array will be terminated by a value which can be detected by @ref MICROUNIT_TEST_IS_ARRAY_TERM()
- *
- * @param[in] name:     The name of the declared array
- */
-#define MICROUNIT_TEST_ARRAY_START(name)        static microunit_test_t name[] = {
-
 /**@brief   Add a test to an array of tests
  *
  * Uses the test body function as a name to identify the test
  *
- * @param[in] setup:    The test's setup function
- * @param[in] body:     The test's body function
- * @param[in] teardown: The test's teardown function
+ * @param[in] setup_f:      The test's setup function
+ * @param[in] body_f:       The test's body function
+ * @param[in] teardown_f:   The test's teardown function
  */
-#define MICROUNIT_TEST(setup, body, teardown)       {                          \
-                                                        .name = #body,         \
-                                                        .setup = (setup),      \
-                                                        .body = (body),        \
-                                                        .teardown = (teardown) \
+#define MICROUNIT_TEST(setup_f, body_f, teardown_f) {                            \
+                                                        .name = #body_f,         \
+                                                        .setup = (setup_f),      \
+                                                        .body = (body_f),        \
+                                                        .teardown = (teardown_f) \
                                                     },
-
-/**@brief   Close out an array of tests */
-#define MICROUNIT_TEST_ARRAY_END()                  {                    \
-                                                        .name = NULL,    \
-                                                        .setup = NULL,   \
-                                                        .body = NULL,    \
-                                                        .teardown = NULL \
-                                                    }                    \
-                                                }
-
-/**@brief   Determine whether an element in a test array is the array terminator
- * 
- * @param[in] test:     The test structure to check
- */
-#define MICROUNIT_TEST_IS_ARRAY_TERM(test)      (((test).setup == NULL)     && \
-                                                 ((test).body == NULL)      && \
-                                                 ((test).teardown == NULL))
 
 /**@brief   Assert @condition evaluates to logical true
  *
  * @param[in] condition:    The condition to be verified
  */
-#define microunit_assert(condition)                         do {                                                       \
-                                                                if (!(condition)) {                                    \
-                                                                    microunit_test_fail(MICROUNIT_AT ": " #condition); \
-                                                                }                                                      \
+#define microunit_assert(condition)                         do {                                                           \
+                                                                if (!(condition)) {                                        \
+                                                                    microunit_test_fail(#condition " (" MICROUNIT_AT ")"); \
+                                                                }                                                          \
                                                             } while (0)
 
 /**@brief   Assert @condition evaluates to logical true
@@ -116,10 +92,10 @@ typedef struct {
  * @param[in] condition:    The condition to be verified
  * @param[in] message:      Message describing the failure
  */
-#define microunit_assert_msg(condition, message)            do {                                                     \
-                                                                if (!(condition)) {                                  \
-                                                                    microunit_test_fail(MICROUNIT_AT ": "  message); \
-                                                                }                                                    \
+#define microunit_assert_msg(condition, message)            do {                                                        \
+                                                                if (!(condition)) {                                     \
+                                                                    microunit_test_fail(message " (" MICROUNIT_AT ")"); \
+                                                                }                                                       \
                                                             } while (0)
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
@@ -129,7 +105,7 @@ typedef struct {
  *
  * @param[in] test:     The test to run
  */
-void microunit_run_test(microunit_test_t * test);
+bool microunit_run_test(microunit_test_t * test);
 
 /**@brief   Causes a test to fail with @p message
  *

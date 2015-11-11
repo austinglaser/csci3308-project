@@ -22,6 +22,7 @@
 // Microunit submodules
 #include "microunit_test.h"
 #include "microunit_suite.h"
+#include "microunit_util.h"
 
 /* --- PUBLIC CONSTANTS ----------------------------------------------------- */
 /* --- PUBLIC DATATYPES ----------------------------------------------------- */

@@ -13,7 +13,7 @@
 /* --- PRIVATE DEPENDENCIES ------------------------------------------------- */
 
 // This Module
-#include "microunit_util.h"
+#include "microunit.h"
 
 // Standard
 #include <stdint.h>
@@ -30,15 +30,21 @@
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 /* --- PRIVATE FUNCTION DEFINITIONS ----------------------------------------- */
 
-__attribute((weak)) void microunit_internal_assertion_failure(char * message)
+__attribute((weak)) void microunit_internal_assertion_failure(const char * message)
 {
     fprintf(stderr, "%s\n", message);
     exit(-1);
 }
 
-__attribute((weak)) void microunit_print_string(char * string)
+__attribute((weak)) void microunit_print_string(const char * string)
 {
     printf("%s", string);
+}
+
+void microunit_print_n(int32_t n)
+{
+    char str[33];
+    microunit_print_string(itoa(n, str, 10));
 }
 
 /** @} addtogroup MICROUNIT_UTIL */

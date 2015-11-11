@@ -19,6 +19,9 @@
 
 /* --- PUBLIC DEPENDENCIES -------------------------------------------------- */
 
+// This module
+#include "microunit.h"
+
 // Standard
 #include <stdint.h>
 #include <stdbool.h>
@@ -35,12 +38,14 @@
 
 #define MICROUNIT_STRINGIFY(sym)        #sym
 
-#define MICROUNIT_AT                    __FILE__ ":" MICROUNIT_STRINGIFY(__LINE__)
+#define MICROUNIT_TOSTRING(sym)         MICROUNIT_STRINGIFY(sym)
 
-#define MICROUNIT_DBG_CHECK(condition)  do {                                                                                                  \
-                                            if (!(condition)) {                                                                               \
-                                                microunit_internal_assertion_failure(MICROUNIT_AT ": MicroUnit internal error: " #condition); \
-                                            }                                                                                                 \
+#define MICROUNIT_AT                    __FILE__ ":" MICROUNIT_TOSTRING(__LINE__)
+
+#define MICROUNIT_DBG_CHECK(condition)  do {                                                                                               \
+                                            if (!(condition)) {                                                                            \
+                                                microunit_internal_assertion_failure("INTERNAL ERROR: " #condition " (" MICROUNIT_AT ")"); \
+                                            }                                                                                              \
                                         } while(0)
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
@@ -50,13 +55,19 @@
  *
  * @note    Overrideable by user
  */
-void microunit_internal_assertion_failure(char * message) __attribute((weak));
+void microunit_internal_assertion_failure(const char * message);
 
 /**@brief   Called to display a string
  *
  * @note    Overrideable by user
  */
-void microunit_print_string(char * string) __attribute((weak));
+void microunit_print_string(const char * string);
+
+/**@brief   Prints a signed integer
+ *
+ * @param[in] n:    The integer to print
+ */
+void microunit_print_n(int32_t n);
 
 /** @} defgroup MICROUNIT_UTIL */
 /** @} addtogroup MICROUNIT */

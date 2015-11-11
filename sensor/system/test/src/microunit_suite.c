@@ -1,27 +1,20 @@
 /**
- * @file    microunit_port.c
+ * @file    microunit_suite.c
  * @author  Austin Glaser <austin@boulderes.com>
- * @brief   MicroUnit System Port Source
+ * @brief   MicroUnit Test Suite Source
  *
- * @addtogroup MICROUNIT_PORT
+ * @addtogroup MICROUNIT_SUITE
  * @{
  */
 
 /* --- PRIVATE DEPENDENCIES ------------------------------------------------- */
 
-// Microunit
+// This Module
 #include "microunit.h"
 
 // Standard
 #include <stdint.h>
 #include <stdbool.h>
-
-// ChibiOS
-#include "ch.h"
-#include "hal.h"
-
-// Application
-#include "debug.h"
 
 /* --- PRIVATE CONSTANTS ---------------------------------------------------- */
 /* --- PRIVATE DATATYPES ---------------------------------------------------- */
@@ -31,16 +24,30 @@
 /* --- PRIVATE VARIABLES ---------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 
-void microunit_internal_assertion_failure(const char * message)
+void microunit_run_suite(microunit_suite_t * suite)
 {
-    chSysHalt(message);
-}
+    uint32_t n_failed = 0;
 
-void microunit_print_string(const char * string)
-{
-    DEBUG_PRINTF("%s", string);
+    microunit_print_string("running suite: ");
+    microunit_print_string(suite->name);
+    microunit_print_string("\r\n");
+
+    uint32_t i;
+    for (i = 0; i < suite->n_tests; i++) {
+        if (!microunit_run_test(&suite->tests[i])) n_failed++;
+    }
+
+    if (n_failed > 0) {
+        microunit_print_string("suite FAILED ");
+        microunit_print_n(n_failed);
+        microunit_print_string(" tests");
+        microunit_print_string("\r\n");
+    }
+    else {
+        microunit_print_string("suite PASSED\r\n");
+    }
 }
 
 /* --- PRIVATE FUNCTION DEFINITIONS ----------------------------------------- */
 
-/** @} addtogroup MICROUNIT_PORT */
+/** @} addtogroup MICROUNIT_SUITE */

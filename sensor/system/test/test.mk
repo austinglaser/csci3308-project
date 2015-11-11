@@ -25,6 +25,7 @@ TEST_INC	+= $(TEST_INC_DIR)
 
 TEST_SRC	:=
 TEST_SRC	+= $(TEST_SRC_DIR)/microunit_test.c
+TEST_SRC	+= $(TEST_SRC_DIR)/microunit_suite.c
 TEST_SRC	+= $(TEST_SRC_DIR)/microunit_util.c
 
 # --- ASSEMBLY --------------------------------------------------------------- #
