@@ -74,9 +74,10 @@ def handle_post_request(env):
                 usage = req_body['usage']
                 ts = req_body['timestamp']
                 db.add_row(ts, usage)
-            return (True, req_body)
         except:
             pass
+        finally:
+            return (True, req_body)
     return (False, None)
 
 def application(env, start_response):
