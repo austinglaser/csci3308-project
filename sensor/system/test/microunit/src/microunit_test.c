@@ -45,14 +45,15 @@ static bool         assertion_env_valid = false;
 
 bool microunit_run_test(microunit_test_t * test)
 {
-    MICROUNIT_DBG_CHECK(test != NULL);
+    MICROUNIT_DBG_CHECK(test        != NULL);
+    MICROUNIT_DBG_CHECK(test->body  != NULL);
 
     bool test_passed = false;
 
     if (setjmp(assertion_env) == 0) {
         assertion_env_valid = true;
 
-        test->setup();
+        if (test->setup) test->setup();
         test->body();
 
         test_passed = true;
@@ -69,7 +70,7 @@ bool microunit_run_test(microunit_test_t * test)
 
     assertion_env_valid = false;
 
-    test->teardown();
+    if (test->teardown) test->teardown();
 
     return test_passed;
 }
