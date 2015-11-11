@@ -44,7 +44,8 @@ __attribute((weak)) void microunit_print_string(const char * string)
 void microunit_print_n(int32_t n)
 {
     char str[33];
-    microunit_print_string(itoa(n, str, 10));
+
+    snprintf(str, 33, "%ld", n);
 }
 
 /** @} addtogroup MICROUNIT_UTIL */
