@@ -39,6 +39,11 @@ void switch_set_state(bool state)
     palWritePad(GPIOC, 8, state);
 }
 
+void switch_toggle(void)
+{
+    palTogglePad(GPIOC, 8);
+}
+
 bool switch_get_state(void)
 {
     return palReadPad(GPIOC, 8);

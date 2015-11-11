@@ -34,6 +34,9 @@ void switch_init(void);
  */
 void switch_set_state(bool state);
 
+/**@briedf  Toggle the switch's state */
+void switch_toggle(void);
+
 /**@brief   Get the switch's current state
  *
  * @return              true if the switch is on, false if it's off
