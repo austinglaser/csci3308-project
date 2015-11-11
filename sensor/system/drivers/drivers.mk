@@ -24,6 +24,7 @@ DRIVER_INC	+= $(DRIVER_INC_DIR)
 # --- DRIVER SOURCES --------------------------------------------------------- #
 
 DRIVER_SRC	:=
+DRIVER_SRC	+= $(DRIVER_SRC_DIR)/switch.c
 
 # --- DRIVER ASSEMBLY -------------------------------------------------------- #
 
