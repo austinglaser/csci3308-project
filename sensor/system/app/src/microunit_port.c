@@ -1,7 +1,7 @@
 /**
  * @file    microunit_port.c
  * @author  Austin Glaser <austin@boulderes.com>
- * @brief   MicroUnit system port Source
+ * @brief   MicroUnit System Port Source
  *
  * @addtogroup MICROUNIT_PORT
  * @{
@@ -31,12 +31,12 @@
 /* --- PRIVATE VARIABLES ---------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 
-void microunit_internal_assertion_failure(char * message)
+void microunit_internal_assertion_failure(const char * message)
 {
     chSysHalt(message);
 }
 
-void microunit_print_string(char * string)
+void microunit_print_string(const char * string)
 {
     DEBUG_PRINTF("%s", string);
 }

@@ -20,11 +20,14 @@
 #include "chprintf.h"
 #include "ctype.h"
 
+// Drivers
+#include "switch.h"
+
 // Application
 #include "debug.h"
 
 #if defined(TEST)
-#include "microunit.h"
+#include "test.h"
 #endif
 
 /* --- PRIVATE DATATYPES ---------------------------------------------------- */
@@ -83,21 +86,22 @@ int main(void) {
     halInit();
     chSysInit();
 
-    palClearPad(GPIOC, 8);
-    palSetPadMode(GPIOC,  8, PAL_MODE_OUTPUT_PUSHPULL);
+    // Driver init
+    switch_init();
 
     // Application init
     debug_init();
+
+#if defined(TEST)
+    run_tests();
+#endif
 
     static uint8_t buffer[BUF_LEN + 1] = { [0 ... BUF_LEN] = '\0'};
     static uint32_t buf_index = 0;
 
     while (true) {
-        //palTogglePad(GPIOC, 8);
-        //chThdSleepMilliseconds(5000);
         msg_t char_in = sdGet(&SD1);
         ECHO(char_in);
-        //chprintf((BaseSequentialStream *) &SD1, "%02x\r\n", char_in);
 
         // backspace
         if (char_in == DEL && buf_index > 0) {
@@ -117,16 +121,15 @@ int main(void) {
             // process command
             str_to_lower(buffer);
             if (ON_CONDITION(buffer, buf_index)) {
-                palSetPad(GPIOC, 8);
+                switch_set_state(true);
                 sdWrite(&SD1, (uint8_t*) "OK\r\n", 4);
             }
             else if (OFF_CONDITION(buffer, buf_index)) {
-                palSetPad(GPIOC, 8);
-                palClearPad(GPIOC, 8);
+                switch_set_state(false);
                 sdWrite(&SD1, (uint8_t*) "OK\r\n", 4);
             }
             else if (TOG_CONDITION(buffer, buf_index)) {
-                palTogglePad(GPIOC, 8);
+                switch_toggle();
                 sdWrite(&SD1, (uint8_t*) "OK\r\n", 4);
             }
             else {
