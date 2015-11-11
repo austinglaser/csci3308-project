@@ -129,8 +129,7 @@ int main(void) {
                 sdWrite(&SD1, (uint8_t*) "OK\r\n", 4);
             }
             else if (TOG_CONDITION(buffer, buf_index)) {
-                bool state = switch_get_state();
-                switch_set_state(!state);
+                switch_toggle();
                 sdWrite(&SD1, (uint8_t*) "OK\r\n", 4);
             }
             else {
