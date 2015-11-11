@@ -22,8 +22,15 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+// ChibiOS
+#include "ch.h"
+#include "hal.h"
+
 // Test framework
 #include "microunit.h"
+
+// Application
+#include "debug.h"
 
 /* --- PRIVATE CONSTANTS ---------------------------------------------------- */
 /* --- PRIVATE DATATYPES ---------------------------------------------------- */
@@ -80,12 +87,22 @@ static void test_on(void)
 {
     switch_set_state(true);
     microunit_assert(switch_get_state() == true);
+    DEBUG_PRINTF("Is the power switch active? [y/n]");
+    char c = sdGet(&SD1);
+    DEBUG_PRINTF("\r\n");
+
+    microunit_assert_msg(c == 'y', "user reported failure");
 }
 
 static void test_off(void)
 {
     switch_set_state(false);
     microunit_assert(switch_get_state() == false);
+
+    DEBUG_PRINTF("Is the power switch active? [y/n]");
+    char c = sdGet(&SD1);
+    DEBUG_PRINTF("\r\n");
+    microunit_assert_msg(c == 'n', "user reported failure");
 }
 
 static void test_toggle(void)
