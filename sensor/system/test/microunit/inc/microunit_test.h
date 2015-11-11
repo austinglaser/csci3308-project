@@ -75,7 +75,7 @@ typedef struct {
                                                         .setup = (setup_f),      \
                                                         .body = (body_f),        \
                                                         .teardown = (teardown_f) \
-                                                    },
+                                                    }
 
 /**@brief   Assert @condition evaluates to logical true
  *
