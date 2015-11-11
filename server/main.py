@@ -69,9 +69,15 @@ def handle_post_request(env):
         req_body_length = 0
     if req_body_length:
         req_body = json.loads(env['wsgi.input'].read(req_body_length))
-        return (True, req_body)
+        try:
+            if req_body['function'] == 'insert':
+                usage = req_body['usage']
+                ts = req_body['timestamp']
+                db.add_row(ts, usage)
+            return (True, req_body)
+        except:
+            pass
     return (False, None)
-
 
 def application(env, start_response):
     start_response('200 OK', [('Content-Type', 'text/html')])
