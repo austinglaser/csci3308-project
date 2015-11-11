@@ -44,6 +44,9 @@ static void test_on(void);
 /**@brief   Test that the power switch can be turned off */
 static void test_off(void);
 
+/**@brief   Test that the power switch can be toggled */
+static void test_toggle(void);
+
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 
 microunit_suite_t * switch_test(void)
@@ -52,6 +55,7 @@ microunit_suite_t * switch_test(void)
         MICROUNIT_TEST(common_setup, test_starts_off, NULL),
         MICROUNIT_TEST(common_setup, test_on,         NULL),
         MICROUNIT_TEST(common_setup, test_off,        NULL),
+        MICROUNIT_TEST(common_setup, test_toggle,     NULL),
     };
 
     MICROUNIT_SUITE(switch_test_suite, tests);
@@ -82,6 +86,17 @@ static void test_off(void)
 {
     switch_set_state(false);
     microunit_assert(switch_get_state() == false);
+}
+
+static void test_toggle(void)
+{
+    bool initial_state = switch_get_state();
+    switch_toggle();
+    bool toggled_state = switch_get_state();
+    microunit_assert(initial_state != toggled_state);
+    switch_toggle();
+    toggled_state = switch_get_state();
+    microunit_assert(initial_state == toggled_state);
 }
 
 /** @} addtogroup SWITCH_TEST */
