@@ -43,26 +43,26 @@
 static void common_setup(void);
 
 /**@brief   Test that the switch is off after initialization */
-static void test_starts_off(void);
+static void starts_off(void);
 
 /**@brief   Test that the power switch can be turned on */
-static void test_on(void);
+static void turn_on(void);
 
 /**@brief   Test that the power switch can be turned off */
-static void test_off(void);
+static void turn_off(void);
 
 /**@brief   Test that the power switch can be toggled */
-static void test_toggle(void);
+static void toggle(void);
 
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 
 microunit_suite_t * switch_get_test_suite(void)
 {
     static microunit_test_t tests[] = {
-        MICROUNIT_TEST(common_setup, test_starts_off, NULL),
-        MICROUNIT_TEST(common_setup, test_on,         NULL),
-        MICROUNIT_TEST(common_setup, test_off,        NULL),
-        MICROUNIT_TEST(common_setup, test_toggle,     NULL),
+        MICROUNIT_TEST(common_setup, starts_off, NULL),
+        MICROUNIT_TEST(common_setup, turn_on,    NULL),
+        MICROUNIT_TEST(common_setup, turn_off,   NULL),
+        MICROUNIT_TEST(common_setup, toggle,     NULL),
     };
 
     MICROUNIT_SUITE(switch_test_suite, tests);
@@ -77,17 +77,17 @@ static void common_setup(void)
     switch_init();
 }
 
-static void test_starts_off(void)
+static void starts_off(void)
 {
     // Init happens in setup
     microunit_assert(switch_get_state() == false);
 }
 
-static void test_on(void)
+static void turn_on(void)
 {
     switch_set_state(true);
     microunit_assert(switch_get_state() == true);
-    DEBUG_PRINTF("Is the power switch active? [y/n]: ");
+    DEBUG_PRINTF("\r\nIs the power switch active? [y/n]: ");
     msg_t c;
     while (true) {
         c = sdGet(&SD1);
@@ -98,12 +98,12 @@ static void test_on(void)
     microunit_assert_msg(c == 'y', "user reported failure");
 }
 
-static void test_off(void)
+static void turn_off(void)
 {
     switch_set_state(false);
     microunit_assert(switch_get_state() == false);
 
-    DEBUG_PRINTF("Is the power switch active? [y/n]: ");
+    DEBUG_PRINTF("\r\nIs the power switch active? [y/n]: ");
     msg_t c;
     while (true) {
         c = sdGet(&SD1);
@@ -113,7 +113,7 @@ static void test_off(void)
     microunit_assert_msg(c == 'n', "user reported failure");
 }
 
-static void test_toggle(void)
+static void toggle(void)
 {
     bool initial_state = switch_get_state();
     switch_toggle();

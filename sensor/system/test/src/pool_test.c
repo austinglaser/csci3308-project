@@ -41,22 +41,22 @@
 static void pool_memory_release(void);
 
 /**@brief   Test that we can allocate a piece of memory */
-static void test_allocate(void);
+static void allocate(void);
 
 /**@brief   Test that we can allocate a piece of memory using the lock-zone API */
-static void test_allocate_i(void);
+static void allocate_i(void);
 
 /**@brief   Test that we can free a piece of memory */
-static void test_free(void);
+static void can_free(void);
 
 /**@brief   Test that we can free a piece of memory using the lock-zone API */
-static void test_free_i(void);
+static void can_free_i(void);
 
 /**@brief   Test that we can allocate at least as many buffers as the header says */
-static void test_allocate_all(void);
+static void allocate_all(void);
 
 /**@brief   Test that allocated memory regions are separated sufficiently */
-static void test_no_overlap(void);
+static void no_overlap(void);
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
 /* --- PRIVATE VARIABLES ---------------------------------------------------- */
@@ -64,12 +64,12 @@ static void test_no_overlap(void);
 
 microunit_suite_t * pool_get_test_suite(void) {
     static microunit_test_t tests[] = {
-        MICROUNIT_TEST(pool_memory_release, test_allocate,     pool_memory_release),
-        MICROUNIT_TEST(pool_memory_release, test_allocate_i,   pool_memory_release),
-        MICROUNIT_TEST(pool_memory_release, test_free,         pool_memory_release),
-        MICROUNIT_TEST(pool_memory_release, test_free_i,       pool_memory_release),
-        MICROUNIT_TEST(pool_memory_release, test_allocate_all, pool_memory_release),
-        MICROUNIT_TEST(pool_memory_release, test_no_overlap,   pool_memory_release),
+        MICROUNIT_TEST(pool_memory_release, allocate,     pool_memory_release),
+        MICROUNIT_TEST(pool_memory_release, allocate_i,   pool_memory_release),
+        MICROUNIT_TEST(pool_memory_release, can_free,     pool_memory_release),
+        MICROUNIT_TEST(pool_memory_release, can_free_i,   pool_memory_release),
+        MICROUNIT_TEST(pool_memory_release, allocate_all, pool_memory_release),
+        MICROUNIT_TEST(pool_memory_release, no_overlap,   pool_memory_release),
     };
 
     MICROUNIT_SUITE(pool_test_suite, tests);
@@ -88,13 +88,13 @@ static void pool_memory_release(void)
     pool_init();
 }
 
-static void test_allocate(void)
+static void allocate(void)
 {
     void * p = pool_alloc();
     microunit_assert(p != NULL);
 }
 
-static void test_allocate_i(void)
+static void allocate_i(void)
 {
     chSysLock();
     void * p = pool_alloc_i();
@@ -102,7 +102,7 @@ static void test_allocate_i(void)
     microunit_assert(p != NULL);
 }
 
-static void test_free(void)
+static void can_free(void)
 {
     void * p = pool_alloc();
 
@@ -111,7 +111,7 @@ static void test_free(void)
     pool_free(p);
 }
 
-static void test_free_i(void)
+static void can_free_i(void)
 {
     void * p = pool_alloc();
 
@@ -122,7 +122,7 @@ static void test_free_i(void)
     chSysUnlock();
 }
 
-static void test_allocate_all(void)
+static void allocate_all(void)
 {
     uint32_t i;
     for (i = 0; i < POOL_AVAILABLE; i++) {
@@ -131,7 +131,7 @@ static void test_allocate_all(void)
     }
 }
 
-static void test_no_overlap(void)
+static void no_overlap(void)
 {
     void * p[POOL_AVAILABLE];
     uint32_t i, j;
