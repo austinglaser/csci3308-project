@@ -195,7 +195,7 @@ CPPWARN = -Wall -Wextra
 #
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS = $(BOARD_DEF) $(DRIVER_DEF) $(TEST_DEF) $(APP_DEF)
+UDEFS = $(BOARD_DEF) $(DRIVER_DEF) $(TEST_DEF) $(APP_DEF) -D__BFILE__="\"$(<F)\""
 ifeq ($(DEBUG), true)
 UDEFS += -DDEBUG
 endif
