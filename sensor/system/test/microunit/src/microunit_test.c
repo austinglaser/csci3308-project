@@ -30,6 +30,16 @@
 /* --- PRIVATE DATATYPES ---------------------------------------------------- */
 /* --- PRIVATE MACROS ------------------------------------------------------- */
 /* --- PRIVATE FUNCTION PROTOTYPES ------------------------------------------ */
+
+/**@brief   Prints the test's name and result
+ *
+ * @note    For a failing test, reads @ref assertion_message
+ *
+ * @param[in] test:     The test
+ * @param[in] result:   Whether the test passed
+ */
+static void microunit_print_test_result(microunit_test_t * test, bool result);
+
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
 /* --- PRIVATE VARIABLES ---------------------------------------------------- */
 
@@ -54,25 +64,13 @@ bool microunit_run_test(microunit_test_t * test)
     if (setjmp(assertion_env) == 0) {
         assertion_env_valid = true;
 
-        microunit_print_string(" - TEST: ");
-        microunit_print_string(test->name);
-        int32_t i;
-        for (i = 0; i < 32 - (int32_t) strlen(test->name); i++) {
-            microunit_print_string(" ");
-        }
-
         if (test->setup) test->setup();
         test->body();
 
         test_passed = true;
 
-        microunit_print_string(" PASS\r\n");
     }
     else {
-        microunit_print_string(" FAIL: ");
-        microunit_print_string(assertion_message);
-        microunit_print_string("\r\n");
-
         test_passed = false;
     }
 
@@ -80,6 +78,7 @@ bool microunit_run_test(microunit_test_t * test)
 
     if (test->teardown) test->teardown();
 
+    microunit_print_test_result(test, test_passed);
 
     return test_passed;
 }
@@ -97,6 +96,30 @@ void microunit_test_fail(const char * message)
 }
 
 /* --- PRIVATE FUNCTION DEFINITIONS ----------------------------------------- */
+
+static void microunit_print_test_result(microunit_test_t * test, bool result)
+{
+#if MICROUNIT_PRINT_SUCCESS != TRUE
+    if (!result) {
+#endif
+        microunit_print_string(" - TEST: ");
+        microunit_print_string(test->name);
+        int32_t i;
+        for (i = 0; i < 32 - (int32_t) strlen(test->name); i++) {
+            microunit_print_string(" ");
+        }
+        if (result) {
+            microunit_print_string(" PASS\r\n");
+        }
+        else {
+            microunit_print_string(" FAIL: ");
+            microunit_print_string(assertion_message);
+            microunit_print_string("\r\n");
+        }
+#if MICROUNIT_PRINT_SUCCESS != TRUE
+    }
+#endif
+}
 
 /** @} addtogroup MICROUNIT_TEST */
 /** @} addtogroup MICROUNIT */

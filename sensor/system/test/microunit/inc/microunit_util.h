@@ -30,18 +30,44 @@
 /* --- PUBLIC DATATYPES ----------------------------------------------------- */
 /* --- PUBLIC MACROS -------------------------------------------------------- */
 
+/**@brief   logical true in macros */
+#define TRUE                            1
+
+/**@brief   logical false in macros */
+#define FALSE                           0
+
 /**@brief   Determine the number of elements in a statically or locally allocated array
  *
  * @warning Cannot be used on arrays passed as pointers, function parameters, etc
  */
 #define MICROUNIT_ARRAY_ELEMS(arr)      (sizeof(arr)/sizeof((arr)[0]))
 
+/**@brief   Stringify a symbol
+ *
+ * @note    Doesn't perform expansion
+ *
+ * @param[in] sym:      The symbol to stringify
+ */
 #define MICROUNIT_STRINGIFY(sym)        #sym
 
+
+/**@brief   Stringify a symbol
+ *
+ * @note    Expands symbol fully
+ *
+ * @param[in] sym:      The symbol to stringify
+ */
 #define MICROUNIT_TOSTRING(sym)         MICROUNIT_STRINGIFY(sym)
 
+/**@brief   File and line number string */
 #define MICROUNIT_AT                    __BFILE__ ":" MICROUNIT_TOSTRING(__LINE__)
 
+/**@brief   Verify @p condition to be true
+ *
+ * Should be used for internal debug checks; kills the program on failure
+ *
+ * @param[in] condition:    The condition to verify
+ */
 #define MICROUNIT_DBG_CHECK(condition)  do {                                                                                               \
                                             if (!(condition)) {                                                                            \
                                                 microunit_internal_assertion_failure("INTERNAL ERROR: " #condition " (" MICROUNIT_AT ")"); \

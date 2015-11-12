@@ -87,7 +87,7 @@ static void turn_on(void)
 {
     switch_set_state(true);
     microunit_assert(switch_get_state() == true);
-    DEBUG_PRINTF("\r\nIs the power switch active? [y/n]: ");
+    DEBUG_PRINTF(" - Is the power output active? [y/n]: ");
     msg_t c;
     while (true) {
         c = sdGet(&SD1);
@@ -103,7 +103,7 @@ static void turn_off(void)
     switch_set_state(false);
     microunit_assert(switch_get_state() == false);
 
-    DEBUG_PRINTF("\r\nIs the power switch active? [y/n]: ");
+    DEBUG_PRINTF(" - Is the power output active? [y/n]: ");
     msg_t c;
     while (true) {
         c = sdGet(&SD1);

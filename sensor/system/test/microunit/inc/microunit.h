@@ -27,6 +27,10 @@
 /* --- PUBLIC CONSTANTS ----------------------------------------------------- */
 /* --- PUBLIC DATATYPES ----------------------------------------------------- */
 /* --- PUBLIC MACROS -------------------------------------------------------- */
+
+/**@brief   Controls whether successful tests are printed */
+#define MICROUNIT_PRINT_SUCCESS         FALSE
+
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 
