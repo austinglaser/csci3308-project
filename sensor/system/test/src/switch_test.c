@@ -87,9 +87,13 @@ static void test_on(void)
 {
     switch_set_state(true);
     microunit_assert(switch_get_state() == true);
-    DEBUG_PRINTF("Is the power switch active? [y/n]");
-    char c = sdGet(&SD1);
-    DEBUG_PRINTF("\r\n");
+    DEBUG_PRINTF("Is the power switch active? [y/n]: ");
+    msg_t c;
+    while (true) {
+        c = sdGet(&SD1);
+        if (c == 'y' || c == 'n') break;
+    }
+    DEBUG_PRINTF("%c\r\n", c);
 
     microunit_assert_msg(c == 'y', "user reported failure");
 }
@@ -99,9 +103,13 @@ static void test_off(void)
     switch_set_state(false);
     microunit_assert(switch_get_state() == false);
 
-    DEBUG_PRINTF("Is the power switch active? [y/n]");
-    char c = sdGet(&SD1);
-    DEBUG_PRINTF("\r\n");
+    DEBUG_PRINTF("Is the power switch active? [y/n]: ");
+    msg_t c;
+    while (true) {
+        c = sdGet(&SD1);
+        if (c == 'y' || c == 'n') break;
+    }
+    DEBUG_PRINTF("%c\r\n", c);
     microunit_assert_msg(c == 'n', "user reported failure");
 }
 
