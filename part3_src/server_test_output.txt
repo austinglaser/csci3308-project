@@ -1,0 +1,17 @@
+Running uWSGI server tests
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 7.115s
+
+OK
+Running Django tests
+/usr/local/lib/python2.7/dist-packages/django/db/models/fields/__init__.py:1474: RuntimeWarning: DateTimeField Usage.time_stamp received a naive datetime (2015-11-11 20:20:00) while time zone support is active.
+  RuntimeWarning)
+
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+Creating test database for alias 'default'...
+Destroying test database for alias 'default'...
