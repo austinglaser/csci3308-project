@@ -33,8 +33,11 @@
 /**@brief   Releases all acquired memory into the pool */
 static void pool_memory_release(void);
 
-/**@breif   Test that we can allocate a piece of memory */
+/**@brief   Test that we can allocate a piece of memory */
 static void test_allocate(void);
+
+/**@brief   Test that we can free a piece of memory */
+static void test_free(void);
 
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
 /* --- PRIVATE VARIABLES ---------------------------------------------------- */
@@ -43,6 +46,7 @@ static void test_allocate(void);
 microunit_suite_t * pool_get_test_suite(void) {
     static microunit_test_t tests[] = {
         MICROUNIT_TEST(pool_memory_release, test_allocate, pool_memory_release),
+        MICROUNIT_TEST(pool_memory_release, test_free,     pool_memory_release),
     };
 
     MICROUNIT_SUITE(pool_test_suite, tests);
@@ -65,6 +69,14 @@ static void test_allocate(void)
 {
     void * p = pool_alloc();
     microunit_assert(p != NULL);
+}
+
+static void test_free(void)
+{
+    void * p = pool_alloc();
+    pool_free(p);
+
+    // TODO: Find how to test for success
 }
 
 /** @} addtogroup POOL_TEST */
