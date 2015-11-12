@@ -31,7 +31,7 @@
 static MEMORYPOOL_DECL(pool_mp, POOL_MEMORY_SIZE, NULL);
 
 /**@brief   Array of memory to serve out */
-static uint8_t pool_array[POOL_MEMORY_SIZE][POOL_AVAILABLE];
+uint8_t pool_array[POOL_MEMORY_SIZE][POOL_AVAILABLE];
 
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 

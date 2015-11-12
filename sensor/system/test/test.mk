@@ -31,6 +31,7 @@ TEST_INC	+= $(MICROUNIT_INC)
 TEST_SRC	:=
 TEST_SRC	+= $(TEST_SRC_DIR)/test.c
 TEST_SRC	+= $(TEST_SRC_DIR)/switch_test.c
+TEST_SRC	+= $(TEST_SRC_DIR)/pool_test.c
 TEST_SRC	+= $(MICROUNIT_SRC)
 
 # --- ASSEMBLY --------------------------------------------------------------- #

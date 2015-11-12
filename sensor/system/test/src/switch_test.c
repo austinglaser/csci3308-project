@@ -56,7 +56,7 @@ static void test_toggle(void);
 
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 
-microunit_suite_t * switch_test(void)
+microunit_suite_t * switch_get_test_suite(void)
 {
     static microunit_test_t tests[] = {
         MICROUNIT_TEST(common_setup, test_starts_off, NULL),

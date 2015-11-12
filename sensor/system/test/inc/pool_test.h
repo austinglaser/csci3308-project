@@ -1,20 +1,20 @@
 /**
- * @file    switch_test.h
+ * @file    pool_test.h
  * @author  Austin Glaser <austin@boulderes.com>
- * @brief   Power Switch Driver Test Interface
+ * @brief   Memory Pool Test Interface
  */
 
-#ifndef SWITCH_TEST_H
-#define SWITCH_TEST_H
+#ifndef POOL_TEST_H
+#define POOL_TEST_H
 
 /**@addtogroup TEST
  * @{
  */
 
-/**@defgroup SWITCH_TEST Power Switch Driver Test
+/**@defgroup POOL_TEST PoolTest
  * @{ 
  *
- * @brief   Tests the software side of the power-switch driver
+ * @brief
  */
 
 /* --- PUBLIC DEPENDENCIES -------------------------------------------------- */
@@ -32,13 +32,13 @@
 /* --- PUBLIC VARIABLES ----------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS ----------------------------------------------------- */
 
-/**@brief   Get the switch test suite
+/**@brief   Get the pool test suite
  *
- * @return      A reference to the test suite
+ * @return  A reference to the test suite
  */
-microunit_suite_t * switch_get_test_suite(void);
+microunit_suite_t * pool_get_test_suite(void);
 
-/** @} defgroup SWITCH_TEST */
+/** @} defgroup POOL_TEST */
 /** @} addtogrooup TEST */
 
-#endif /* ifndef SWITCH_TEST_H */
+#endif /* ifndef POOL_TEST_H */
