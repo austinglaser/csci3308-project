@@ -11,3 +11,9 @@ When the server is running, you can access admin function at localhost:8000/admi
 The default login is admin/admin
 
 The index.html file has been integrated as a template and can be viewed at localhost:8000/figure
+
+If changes are made, you can view them with
+$ python manage.py migrate
+
+To actually commit the changes use
+$ python manage.py makemigrations
