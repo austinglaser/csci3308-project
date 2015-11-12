@@ -11,10 +11,13 @@
  * @{
  */
 
-/**@defgroup POOL_TEST PoolTest
+/**@defgroup POOL_TEST Memory Pool Test
  * @{ 
  *
- * @brief
+ * @brief   Tests the memory pool allocator
+ *
+ * @note    The internal test functions are cavalier about freeing memory; this
+ *          is because a full cleanup is done before and after each test is run
  */
 
 /* --- PUBLIC DEPENDENCIES -------------------------------------------------- */
