@@ -25,6 +25,7 @@
 
 // Application
 #include "debug.h"
+#include "pool.h"
 
 #if defined(TEST)
 #include "test.h"
@@ -91,6 +92,7 @@ int main(void) {
 
     // Application init
     debug_init();
+    pool_init();
 
 #if defined(TEST)
     run_tests();
