@@ -87,7 +87,6 @@ SRCPATHS  = $(sort $(dir $(ASMXSRC)) $(dir $(ASMSRC)) $(dir $(ASRC)) $(dir $(TSR
 OBJDIR    = $(BUILDDIR)/obj
 LSTDIR    = $(BUILDDIR)/lst
 DEPDIR    = $(BUILDDIR)/dep
-ACEUDIR   = $(BUILDDIR)/aceunit_inc
 
 # Object files groups
 ACOBJS    = $(addprefix $(OBJDIR)/, $(notdir $(ACSRC:.c=.o)))
@@ -99,11 +98,8 @@ ASMOBJS   = $(addprefix $(OBJDIR)/, $(notdir $(ASMSRC:.s=.o)))
 ASMXOBJS  = $(addprefix $(OBJDIR)/, $(notdir $(ASMXSRC:.S=.o)))
 OBJS	  = $(ASMXOBJS) $(ASMOBJS) $(ACOBJS) $(TCOBJS) $(ACPPOBJS) $(TCPPOBJS) $(ACEUOBJS)
 
-# Generated headers
-ACEUHDRS  = $(addprefix $(ACEUDIR)/, $(notdir $(ACEUSRC:.c=.h)))
-
 # Paths
-IINCDIR   = $(patsubst %,-I%,$(INCDIR) $(DINCDIR) $(UINCDIR) $(ACEUDIR))
+IINCDIR   = $(patsubst %,-I%,$(INCDIR) $(DINCDIR) $(UINCDIR))
 LLIBDIR   = $(patsubst %,-L%,$(DLIBDIR) $(ULIBDIR))
 
 # Macros
@@ -166,7 +162,7 @@ PRE_MAKE_ALL_RULE_HOOK:
 
 POST_MAKE_ALL_RULE_HOOK:
 
-$(OBJS): | $(BUILDDIR) $(OBJDIR) $(LSTDIR) $(DEPDIR) $(ACEUDIR)
+$(OBJS): | $(BUILDDIR) $(OBJDIR) $(LSTDIR) $(DEPDIR)
 
 $(BUILDDIR):
 ifneq ($(USE_VERBOSE_COMPILE),yes)
@@ -184,23 +180,6 @@ $(LSTDIR):
 
 $(DEPDIR):
 	@mkdir -p $(DEPDIR)
-
-$(ACEUDIR):
-	@mkdir -p $(ACEUDIR)
-
-$(ACEUHDRS) : $(ACEUDIR)/%.h : %.c $(ACEUNIT_CONFIG_FILE) $(MAKEFILE_LIST)
-	@echo Generating $(notdir $@)
-	@$(ACEUNIT_HDR_GEN) $(basename $<)
-	@mv $(<:.c=.h) $@
-
-$(ACEUOBJS) : $(OBJDIR)/%.o : %.c $(ACEUDIR)/%.h $(MAKEFILE_LIST)
-ifeq ($(USE_VERBOSE_COMPILE),yes)
-	@echo
-	$(CC) -c $(CFLAGS) $(TOPT) -I. $(IINCDIR) $< -o $@
-else
-	@echo Compiling $(<F)
-	@$(CC) -c $(CFLAGS) $(TOPT) -I. $(IINCDIR) $< -o $@
-endif
 
 $(ACPPOBJS) : $(OBJDIR)/%.o : %.cpp $(MAKEFILE_LIST)
 ifeq ($(USE_VERBOSE_COMPILE),yes)
