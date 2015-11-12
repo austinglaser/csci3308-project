@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+echo "Running uWSGI server tests"
+
+pushd server >/dev/null
+python -m unittest discover .
+popd >/dev/null
+
+
+echo "Running Django tests"
+
+pushd ENV/bin >/dev/null
+#. activate
+pip_django=$(pip list | grep -i django)
+django_re="Django (.*)"
+if [[ $pip_django =~ $django_re ]]; then
+    cd site/mysite
+    python manage.py test
+else
+    echo "Django tests require django be installed through pip"
+fi
+popd >/dev/null
+
