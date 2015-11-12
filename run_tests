@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# Run all tests. Must be run from the directory it's in (./run_tests)
+#
 
 echo "Running uWSGI server tests"
 
@@ -10,7 +13,7 @@ popd >/dev/null
 echo "Running Django tests"
 
 pushd ENV/bin >/dev/null
-#. activate
+. activate
 pip_django=$(pip list | grep -i django)
 django_re="Django (.*)"
 if [[ $pip_django =~ $django_re ]]; then
