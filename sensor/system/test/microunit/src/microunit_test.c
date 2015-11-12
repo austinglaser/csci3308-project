@@ -19,6 +19,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 #include <setjmp.h>
 
 /* --- PRIVATE CONSTANTS ---------------------------------------------------- */
@@ -53,15 +54,22 @@ bool microunit_run_test(microunit_test_t * test)
     if (setjmp(assertion_env) == 0) {
         assertion_env_valid = true;
 
+        microunit_print_string(" - TEST: ");
+        microunit_print_string(test->name);
+        int32_t i;
+        for (i = 0; i < 32 - (int32_t) strlen(test->name); i++) {
+            microunit_print_string(" ");
+        }
+
         if (test->setup) test->setup();
         test->body();
 
         test_passed = true;
+
+        microunit_print_string(" PASS\r\n");
     }
     else {
-        microunit_print_string(" - TEST FAIL: ");
-        microunit_print_string(test->name);
-        microunit_print_string(": ");
+        microunit_print_string(" FAIL: ");
         microunit_print_string(assertion_message);
         microunit_print_string("\r\n");
 
@@ -71,6 +79,7 @@ bool microunit_run_test(microunit_test_t * test)
     assertion_env_valid = false;
 
     if (test->teardown) test->teardown();
+
 
     return test_passed;
 }

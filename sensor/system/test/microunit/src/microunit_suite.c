@@ -28,7 +28,7 @@ void microunit_run_suite(microunit_suite_t * suite)
 {
     uint32_t n_failed = 0;
 
-    microunit_print_string("running suite: ");
+    microunit_print_string("SUITE: ");
     microunit_print_string(suite->name);
     microunit_print_string("\r\n");
 
@@ -38,13 +38,12 @@ void microunit_run_suite(microunit_suite_t * suite)
     }
 
     if (n_failed > 0) {
-        microunit_print_string("suite FAILED ");
+        microunit_print_string("FAIL (");
         microunit_print_n(n_failed);
-        microunit_print_string(" tests");
-        microunit_print_string("\r\n");
+        microunit_print_string(" tests)\r\n");
     }
     else {
-        microunit_print_string("suite PASSED\r\n");
+        microunit_print_string("PASS\r\n");
     }
 }
 
