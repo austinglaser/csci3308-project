@@ -1,29 +1,62 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'figure/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'figure/bootstrap.min.css' %}" />
 <html>
-<h1>Generate an Outletify graph</h1>
 <body>
 
-<!-- <script type="text/javascript" src="jquery-1.11.0.min.js"></script> -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria=expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Outletify</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<form action="" method="get">
-    <input type="hidden" name="query" value="1">
-    Graph by timestamp:
-    <input type="text" name="timestamp">
-    <input type="submit" value="Lookup">
-</form>
+<div class="row" style="height: 50px;"></div>
 
-<form action="" method="get">
-    <input type="hidden" name="insert" value="1">
-    timestamp:
-    <input type="text" name="timestamp">
-    usage:
-    <input type="text" name="usage">
-    <input type="submit" value="Save">
-</form>
+<div class="container">
+    <h1>Generate an Outletify graph</h1>
 
-##VAL##
+    <div class="row" style="height: 20px;"></div>
+
+    <form action="" method="get" class="form-inline">
+        <input type="hidden" name="query" value="1">
+        <label for="InputQueryTimestamp">Timestamp</label>
+        <input type="text" name="timestamp" class="form-control">
+        <button type="submit" class="btn btn-default">Lookup</button>
+    </form>
+
+    <div class="row" style="height: 20px;"></div>
+
+    <form action="" method="get" class="form-inline">
+        <input type="hidden" name="insert" value="1">
+        <div class="form-group">
+            <label for="InputInsertRowTimestamp">Timestamp</label>
+            <input type="text" name="timestamp" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="InputInsertRowUsage">Usage</label>
+            <input type="text" name="usage" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-default">Save</button>
+    </form>
+</div>
+
+<script src="{% static 'figure/jquery.min.js' %}"></script>
+<script src="{% static 'figure/bootstrap.min.js' %}"></script>
 
 </body>
 </html>
