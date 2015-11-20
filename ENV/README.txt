@@ -17,3 +17,6 @@ $ python manage.py migrate
 
 To actually commit the changes use
 $ python manage.py makemigrations
+
+If the admin page requires login, it is set as
+admin/admin
