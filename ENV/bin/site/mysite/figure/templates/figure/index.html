@@ -3,6 +3,11 @@
 <link rel="stylesheet" type="text/css" href="{% static 'figure/style.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'figure/bootstrap.min.css' %}" />
 <html>
+<head>
+    <!-- <script type="text/javascript" src="jquery-1.11.0.min.js"></script> -->
+    <!-- <script tpye="text/javascript" src="http://code.highcharts.com/highcharts.js"></script> -->
+    {% load chartit %}
+</head>
 <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -54,6 +59,8 @@
         <button type="submit" class="btn btn-default">Save</button>
     </form>
 </div>
+
+<div id="container">{{ usagechart|load_charts:"container"}}</div>
 
 <script src="{% static 'figure/jquery.min.js' %}"></script>
 <script src="{% static 'figure/bootstrap.min.js' %}"></script>
