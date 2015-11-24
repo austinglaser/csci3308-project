@@ -6,6 +6,7 @@ from django.db import connections
 from django.db.models import Count
 from django.http import JsonResponse
 from django.core import serializers
+import djqscsv
 
 from .models import Usage
 
@@ -21,10 +22,16 @@ def index(request):
 def graph(request):
 	return render(request, 'graph/graph.html')
 
+# Returns data in raw JSON format
 def usage_data(request):
 	data = Usage.objects.all() \
 		.values('time_stamp', 'device_usage')
 	return JsonResponse(list(data), safe=False)
+
+# Exports data as csv for plot.ly
+def get_csv(request):
+	qs = Usage.objects.all()
+	return djqscsv.render_to_csv_response(qs)
 
 def detail(request, usage_id):
 	try:
