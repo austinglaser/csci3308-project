@@ -10,12 +10,12 @@ import djqscsv
 
 from .models import Usage
 
-def index(request):
+def page(request, name="index.html"):
+	print(request)
 	usage_list = Usage.objects
-	template = loader.get_template('figure/index.html')
+	template = loader.get_template('figure/%s' % name)
 	context = RequestContext(request, {
 		'usage_list': usage_list,
-
 		})
 	return HttpResponse(template.render(context))
 

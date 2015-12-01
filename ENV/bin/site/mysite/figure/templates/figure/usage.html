@@ -1,0 +1,75 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'figure/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'figure/bootstrap.min.css' %}" />
+<html>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria=expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Outletify</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="#">Usage</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Query or Log Data</h1>
+        </div>
+    </div>
+    <div class="row" style="height: 60px;"></div>
+
+    <form action="" method="get" class="form-inline">
+        <input type="hidden" name="query" value="1">
+        <label for="InputQueryTimestamp">TIMESTAMP</label>
+        <div>
+            <input type="text" name="timestamp" class="form-control">
+        </div>
+        <div class="row" style="height: 20px;"></div>
+        <button type="submit" class="btn btn-default">LOOKUP</button>
+    </form>
+
+    <div class="row" style="height: 60px;"></div>
+
+    <form action="" method="get" class="form-inline">
+        <input type="hidden" name="insert" value="1">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="InputInsertRowTimestamp">TIMESTAMP</label>
+                <div>
+                    <input type="text" name="timestamp" class="form-control">
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="InputInsertRowUsage">USAGE</label>
+                <div>
+                    <input type="text" name="usage" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row" style="height: 20px;"></div>
+        <button type="submit" class="btn btn-default">SAVE</button>
+    </form>
+</div>
+
+<script src="{% static 'figure/jquery.min.js' %}"></script>
+<script src="{% static 'figure/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

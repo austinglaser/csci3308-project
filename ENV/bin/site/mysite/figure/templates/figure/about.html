@@ -14,13 +14,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Outletify</a>
+            <a class="navbar-brand" href="index.html">Outletify</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="usage.html">Usage</a></li>
-                <li><a href="about.html">About</a></li>
+                <li class="active"><a href="#">About</a></li>
             </ul>
         </div>
     </div>
@@ -28,15 +28,13 @@
 
 <div class="container">
     <div class="row" style="height: 100px;"></div>
+    <h1>About</h1>
+    <div class="row" style="height: 60px;"></div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <img src="{% static 'figure/icon.png' %}" style="max-width: 300px;" />
-        </div>
-        <div class="col-md-8" style="padding-top: 100px;">
-            <h1>Welcome to Outletify</h1>
-        </div>
-    </div>
+    <p class="lead">Outletify is the simplest way to manage and monitor all the
+    household technology you depend on. Lower your bills, reduce your
+    environmental footprint, and make your life easier by leaving menial tasks
+    to the machines.</p>
 </div>
 
 <script src="{% static 'figure/jquery.min.js' %}"></script>
