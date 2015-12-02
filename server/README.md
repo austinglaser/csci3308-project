@@ -1,6 +1,3 @@
-# About
-This is Alan's proposal for a simple server stack.
-
 # uWSGI
 uWSGI can be used as both a web server and a python interface. Assuming our
 server will only have to deal with very light loads, this should be sufficient.
