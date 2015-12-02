@@ -1,5 +1,7 @@
-# Outletify Pyplot from SQL
-# Jon Wehrend
+## @package plot
+# @author Jon Wehrend
+#
+# Interface to pyplot for rendering Outletify data
 
 import matplotlib
 matplotlib.use('Agg')
@@ -14,6 +16,12 @@ days = mdates.DayLocator()
 hours = mdates.HourLocator()
 date_format = mdates.DateFormatter("%a %d %b %Y") # Will output as Day of week, day, month
 
+##
+# @param timestamps Timestamp values to be plotted
+# @param usage Usage values to be plotted
+#
+# Creates an image 'Usage_Plot.png' with a plot of all the timestamp and usage
+# values supplied.
 def make_plot(timestamps, usage):
     dates = []
     for ts in timestamps:

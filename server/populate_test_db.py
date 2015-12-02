@@ -1,4 +1,6 @@
-#import sqlite3 as lite
+## @file
+# Script to add some random data to an Outletify database
+
 import db_interface as db
 import random
 
