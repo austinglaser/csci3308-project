@@ -11,7 +11,6 @@ import djqscsv
 from .models import Usage
 
 def page(request, name="index.html"):
-	print(request)
 	usage_list = Usage.objects
 	template = loader.get_template('figure/%s' % name)
 	context = RequestContext(request, {
