@@ -1,6 +1,4 @@
 ## @package plot
-# @author Jon Wehrend
-#
 # Interface to pyplot for rendering Outletify data
 
 import matplotlib

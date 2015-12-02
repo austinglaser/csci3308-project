@@ -13,7 +13,6 @@ TMP_PLOT_NAME = 'Usage_Plot.png'
 # @param args args to check for in the dictionary
 # @return True if d contains entries for all args. False otherwise
 def dict_contains(d, *args):
-    ''' return True if all args are in d '''
     for arg in args:
         if arg not in d:
             return False
