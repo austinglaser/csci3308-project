@@ -743,7 +743,7 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = server/create_db.py server/db_interface.py server/dump_test_db.py server/main.py server/mock_sensor.py server/plot.py server/populate_test_db.py server/request_handler.py server/README.md server/sensor_interface.md sensor/README.md
+INPUT                  = server/create_db.py server/db_interface.py server/dump_test_db.py server/main.py server/mock_sensor.py server/plot.py server/populate_test_db.py server/request_handler.py server/README.md server/sensor_interface.md sensor/README.md ENV/bin/site/mysite/figure/models.py
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
