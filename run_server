@@ -1,0 +1,1 @@
+cd ENV/bin && . activate && cd site/mysite && python manage.py runserver
