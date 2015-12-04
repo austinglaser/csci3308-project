@@ -11,7 +11,7 @@ clean:
 # follow instructions in sensor/README.md, probably.
 dep:
 
-test:
+test: all
 	./run_tests
 
 doc:
