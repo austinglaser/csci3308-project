@@ -12,6 +12,7 @@
  	<div id="usage-plot"></div>
  	<script>
 		Plotly.d3.csv("{% url "get_csv" %}", function(rows) {
+        //var parseDate = d3.time.format("%Y-%m-%dT00:00:00Z").parse;  // for dates like "2014-01-01T00:00:00Z"
     		var trace = {
       			type: 'scatter',
       			fill: 'tozeroy',

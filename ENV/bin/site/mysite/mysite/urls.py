@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+# Includes admin urls to access database and groups and figure/ urls where all web pages in project are accessed
 urlpatterns = [
     url(r'^figure/', include('figure.urls')),
     url(r'', include('figure.urls')),
