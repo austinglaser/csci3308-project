@@ -61,6 +61,7 @@ def usage_data(request):
 # @return A csv file containging the database data
 #
 # Exports data as csv to be used by the plot.ly javascript library
+# The database can also be downloaded directly by visiting the figure/csv url
 def get_csv(request):
 	qs = Usage.objects.all()
 	return djqscsv.render_to_csv_response(qs)
