@@ -10,17 +10,19 @@ import djqscsv
 
 from .models import Usage
 
-def index(request):
+def page(request, name, template):
 	usage_list = Usage.objects
-	template = loader.get_template('figure/index.html')
+	template = loader.get_template('%s/%s' % (template, name))
 	context = RequestContext(request, {
 		'usage_list': usage_list,
-
 		})
 	return HttpResponse(template.render(context))
 
-def graph(request):
-	return render(request, 'graph/graph.html')
+def page_figure(request, name="index.html"):
+	return page(request, name, "figure")
+
+def page_graph(request, name="graph.html"):
+	return page(request, name, "graph")
 
 # Returns data in raw JSON format
 def usage_data(request):

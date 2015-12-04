@@ -1,3 +1,6 @@
+## @file
+# Script to print out the contents of 'outletify.db'
+
 import sqlite3 as lite
 
 con = lite.connect('outletify.db')

@@ -1,15 +1,32 @@
+## @package db_interface
+#
+# Provides a simple interface to an sqlite3 database configured for Outletify
+
 import sqlite3 as lite
 
 DB_NAME = 'outletify.db'
 
+##
+# @param name The name of a database to connect to. Default to "outletify.db"
+# @return Tuple containing a connection and cursor for the connection, used as
+# a dbhandle for other methods in the module
+#
+# Connects to an sqlite3 database
 def connect(name=DB_NAME):
     con = lite.connect(name)
     cur = con.cursor()
     return (con, cur)
 
+##
+# @param dbhandle database handle from connect
 def close_handle(dbhandle):
     dbhandle[0].close()
 
+##
+# @param dbhandle database handle from connect. Default database if None
+#
+# Creates a table named 'usage_stats' with integer rows named 'timestamp' and
+# 'usage'
 def create_outletify_tables(dbhandle=None):
     if dbhandle is None:
         close_con = True
@@ -23,6 +40,9 @@ def create_outletify_tables(dbhandle=None):
     if close_con:
         con.close()
 
+##
+# @param dbhandle database handle from connect. Default database if None
+# @return An array describing the entire contents of the given database
 def dump_contents(dbhandle=None):
     if dbhandle is None:
         close_con = True
@@ -51,6 +71,12 @@ def dump_contents(dbhandle=None):
         con.close()
     return ret
 
+##
+# @param dbhandle database handle from connect. Default database if None
+# @param timestamp A timestamp value that can be converted to an int
+# @param usage A usage value that can be converted to an int
+#
+# Adds a row to the given Outletify database
 def add_row(timestamp, usage, dbhandle=None):
     if dbhandle is None:
         close_con = True
@@ -65,13 +91,12 @@ def add_row(timestamp, usage, dbhandle=None):
     if close_con:
         con.close()
 
+##
+# @param dbhandle database handle from connect. Default database if None
+# @param timestamp A timestamp value that is either an int or an (int, int)
+# representing an inclusive range of timestamps
+# @return All the usage entries for the given timestamp(s)
 def query_by_timestamp(timestamp, dbhandle=None):
-    '''
-    Returns usage entries for the given timestamp(s)
-
-    timestamp is either an int or (int, int) representing an inclusive range of
-    timestamps.
-    '''
     if dbhandle is None:
         close_con = True
         con, cur = connect()

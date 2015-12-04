@@ -1,11 +1,11 @@
 from django.conf.urls import url
 
 from . import views
-from .views import graph, usage_data, get_csv
 
 urlpatterns = [
-	url(r'^$', views.index, name='index'),
-	url(r'^graph', views.graph, name='graph'),
-	url(r'^api/usage_data', usage_data, name='usage_data'),
-	url(r'^csv', get_csv, name='get_csv'),
+	url(r'^(.*\.html)$', views.page_figure, name='index'),
+	url(r'^$', views.page_figure, name='index'),
+	url(r'^graph', views.page_graph, name='graph'),
+	url(r'^api/usage_data', views.usage_data, name='usage_data'),
+	url(r'^csv', views.get_csv, name='get_csv'),
 	]
