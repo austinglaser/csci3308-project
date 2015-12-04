@@ -1,3 +1,7 @@
+## @package tests
+#
+# A simple test used to add an entry to the database and verify the output
+
 from django.test import TestCase
 from figure.models import Usage
    

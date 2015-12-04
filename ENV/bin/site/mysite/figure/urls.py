@@ -1,3 +1,7 @@
+## @package urls
+#
+# Contains an array or url patterns to identify pages the server can display
+
 from django.conf.urls import url
 
 from . import views
