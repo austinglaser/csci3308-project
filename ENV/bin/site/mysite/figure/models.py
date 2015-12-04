@@ -1,6 +1,9 @@
+## @package models
+#
+# Defines the class that makes up the relational database used for storing and visualizing the data
+
 from django.db import models
 
-# Create your models here.
 class Usage(models.Model):
 	device_usage = models.IntegerField(default=0)
 	time_stamp = models.DateTimeField('time recorded')
