@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd ENV/bin/site/mysite
+python add_data.py
