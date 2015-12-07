@@ -1,0 +1,125 @@
+\hypertarget{namespacedb__interface}{\section{db\-\_\-interface Namespace Reference}
+\label{namespacedb__interface}\index{db\-\_\-interface@{db\-\_\-interface}}
+}
+
+
+Provides a simple interface to an sqlite3 database configured for Outletify.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacedb__interface_a9dc663751479c6d0cec83e4895f65a43}{connect}
+\item 
+def \hyperlink{namespacedb__interface_a37ec95a825002d2d77c94c0f76512a0b}{close\-\_\-handle}
+\item 
+def \hyperlink{namespacedb__interface_a8e6ba6cc9f46178111842f698946c6fb}{create\-\_\-outletify\-\_\-tables}
+\item 
+def \hyperlink{namespacedb__interface_a03088d2791eade0146f7fd5bbc5926a0}{dump\-\_\-contents}
+\item 
+def \hyperlink{namespacedb__interface_ab7a5ac2ffbd107cc2f0a5745efd8c65c}{add\-\_\-row}
+\item 
+def \hyperlink{namespacedb__interface_a98ea80b49a8a41bffaecfb374b007abd}{query\-\_\-by\-\_\-timestamp}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacedb__interface_a24d07298c20425fbb8b12f569270582c}{string {\bfseries D\-B\-\_\-\-N\-A\-M\-E} = 'outletify.\-db'}\label{namespacedb__interface_a24d07298c20425fbb8b12f569270582c}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides a simple interface to an sqlite3 database configured for Outletify. 
+
+\subsection{Function Documentation}
+\hypertarget{namespacedb__interface_ab7a5ac2ffbd107cc2f0a5745efd8c65c}{\index{db\-\_\-interface@{db\-\_\-interface}!add\-\_\-row@{add\-\_\-row}}
+\index{add\-\_\-row@{add\-\_\-row}!db_interface@{db\-\_\-interface}}
+\subsubsection[{add\-\_\-row}]{\setlength{\rightskip}{0pt plus 5cm}def db\-\_\-interface.\-add\-\_\-row (
+\begin{DoxyParamCaption}
+\item[{}]{timestamp, }
+\item[{}]{usage, }
+\item[{}]{dbhandle = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{namespacedb__interface_ab7a5ac2ffbd107cc2f0a5745efd8c65c}
+
+\begin{DoxyParams}{Parameters}
+{\em dbhandle} & database handle from connect. Default database if None \\
+\hline
+{\em timestamp} & A timestamp value that can be converted to an int \\
+\hline
+{\em usage} & A usage value that can be converted to an int\\
+\hline
+\end{DoxyParams}
+Adds a row to the given Outletify database \hypertarget{namespacedb__interface_a37ec95a825002d2d77c94c0f76512a0b}{\index{db\-\_\-interface@{db\-\_\-interface}!close\-\_\-handle@{close\-\_\-handle}}
+\index{close\-\_\-handle@{close\-\_\-handle}!db_interface@{db\-\_\-interface}}
+\subsubsection[{close\-\_\-handle}]{\setlength{\rightskip}{0pt plus 5cm}def db\-\_\-interface.\-close\-\_\-handle (
+\begin{DoxyParamCaption}
+\item[{}]{dbhandle}
+\end{DoxyParamCaption}
+)}}\label{namespacedb__interface_a37ec95a825002d2d77c94c0f76512a0b}
+
+\begin{DoxyParams}{Parameters}
+{\em dbhandle} & database handle from connect \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespacedb__interface_a9dc663751479c6d0cec83e4895f65a43}{\index{db\-\_\-interface@{db\-\_\-interface}!connect@{connect}}
+\index{connect@{connect}!db_interface@{db\-\_\-interface}}
+\subsubsection[{connect}]{\setlength{\rightskip}{0pt plus 5cm}def db\-\_\-interface.\-connect (
+\begin{DoxyParamCaption}
+\item[{}]{name = {\ttfamily DB\-\_\-NAME}}
+\end{DoxyParamCaption}
+)}}\label{namespacedb__interface_a9dc663751479c6d0cec83e4895f65a43}
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of a database to connect to. Default to \char`\"{}outletify.\-db\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tuple containing a connection and cursor for the connection, used as a dbhandle for other methods in the module
+\end{DoxyReturn}
+Connects to an sqlite3 database \hypertarget{namespacedb__interface_a8e6ba6cc9f46178111842f698946c6fb}{\index{db\-\_\-interface@{db\-\_\-interface}!create\-\_\-outletify\-\_\-tables@{create\-\_\-outletify\-\_\-tables}}
+\index{create\-\_\-outletify\-\_\-tables@{create\-\_\-outletify\-\_\-tables}!db_interface@{db\-\_\-interface}}
+\subsubsection[{create\-\_\-outletify\-\_\-tables}]{\setlength{\rightskip}{0pt plus 5cm}def db\-\_\-interface.\-create\-\_\-outletify\-\_\-tables (
+\begin{DoxyParamCaption}
+\item[{}]{dbhandle = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{namespacedb__interface_a8e6ba6cc9f46178111842f698946c6fb}
+
+\begin{DoxyParams}{Parameters}
+{\em dbhandle} & database handle from connect. Default database if None\\
+\hline
+\end{DoxyParams}
+Creates a table named 'usage\-\_\-stats' with integer rows named 'timestamp' and 'usage' \hypertarget{namespacedb__interface_a03088d2791eade0146f7fd5bbc5926a0}{\index{db\-\_\-interface@{db\-\_\-interface}!dump\-\_\-contents@{dump\-\_\-contents}}
+\index{dump\-\_\-contents@{dump\-\_\-contents}!db_interface@{db\-\_\-interface}}
+\subsubsection[{dump\-\_\-contents}]{\setlength{\rightskip}{0pt plus 5cm}def db\-\_\-interface.\-dump\-\_\-contents (
+\begin{DoxyParamCaption}
+\item[{}]{dbhandle = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{namespacedb__interface_a03088d2791eade0146f7fd5bbc5926a0}
+
+\begin{DoxyParams}{Parameters}
+{\em dbhandle} & database handle from connect. Default database if None \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array describing the entire contents of the given database 
+\end{DoxyReturn}
+\hypertarget{namespacedb__interface_a98ea80b49a8a41bffaecfb374b007abd}{\index{db\-\_\-interface@{db\-\_\-interface}!query\-\_\-by\-\_\-timestamp@{query\-\_\-by\-\_\-timestamp}}
+\index{query\-\_\-by\-\_\-timestamp@{query\-\_\-by\-\_\-timestamp}!db_interface@{db\-\_\-interface}}
+\subsubsection[{query\-\_\-by\-\_\-timestamp}]{\setlength{\rightskip}{0pt plus 5cm}def db\-\_\-interface.\-query\-\_\-by\-\_\-timestamp (
+\begin{DoxyParamCaption}
+\item[{}]{timestamp, }
+\item[{}]{dbhandle = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{namespacedb__interface_a98ea80b49a8a41bffaecfb374b007abd}
+
+\begin{DoxyParams}{Parameters}
+{\em dbhandle} & database handle from connect. Default database if None \\
+\hline
+{\em timestamp} & A timestamp value that is either an int or an (int, int) representing an inclusive range of timestamps \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+All the usage entries for the given timestamp(s) 
+\end{DoxyReturn}

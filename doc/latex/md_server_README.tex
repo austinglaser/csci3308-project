@@ -1,0 +1,38 @@
+u\-W\-S\-G\-I can be used as both a web server and a python interface. Assuming our server will only have to deal with very light loads, this should be sufficient. If for whatever reason we decide we need a more standard web server, we could use something like nginx, but u\-W\-S\-G\-I would still be necessary as the python interface.
+
+\subsection*{Installation}
+
+There are packages for standard Linux distributions, but it's easier if we have a known, consistent starting point by building from source\-:
+
+``` wget \href{http://projects.unbit.it/downloads/uwsgi-latest.tar.gz}{\tt http\-://projects.\-unbit.\-it/downloads/uwsgi-\/latest.\-tar.\-gz} tar xvzf uwsgi-\/latest.\-tar.\-gz cd $<$dir$>$ make ```
+
+This will produce a uwsgi binary in the build directory -\/ this is the binary that will be referenced later.
+
+\section*{Python}
+
+Currently, the scripts assume Python 2 is used, though supporting 3 as well is trivial. We should decide on a version soon. \hyperlink{main_8py}{main.\-py} contains the function application, which is the entry point for the server. This is specified in the uwsgi invocation given below.
+
+\subsection*{matplotlib and pyplot}
+
+matplotlib includes pyplot, which seems to be useful for plotting stuff. In Ubuntu, the package python-\/matplotlib installs these Python modules.
+
+\section*{The Database}
+
+We all are at least somewhat familiar with S\-Q\-L now. I'd suggest using sqlite3, because the Python standard distribution provides an sqlite3 module, making setup very simple.
+
+To create the test database\-: ``` python \hyperlink{create__db_8py}{create\-\_\-db.\-py} ```
+
+To populate it with some random test data\-: ``` python \hyperlink{populate__test__db_8py}{populate\-\_\-test\-\_\-db.\-py} ```
+
+\section*{Running the Server}
+
+``` uwsgi --http \-:9090 --wsgi-\/file \hyperlink{main_8py}{main.\-py} --stats 127.\-0.\-0.\-1\-:9191 ``` The web server is listening on port 9090. In a browser, navigate to 127.\-0.\-0.\-1\-:9090. If all is well, you should see \char`\"{}\-Hello World\char`\"{}. Information about the running server can be found at 127.\-0.\-0.\-1\-:9191.
+
+The server provides a very simple A\-P\-I that allows for creating and querying rows in test.\-db (in a very limited manner).
+
+The H\-T\-M\-L template index.\-html is displayed by default. The page contains two forms\-: one for querying data and displaying a plot, and one for inserting new data into the database. Both forms use the A\-P\-I described below.
+
+To create a new row, navigate to 127.\-0.\-0.\-1\-:9090/?insert=1\&id=$\ast$id$\ast$\&field=$\ast$field$\ast$, where {\itshape id} and {\itshape field} are an int and a string, respectively. For example, to insert a row with Id 2 and Field \char`\"{}fieldtwo\char`\"{}, navigate to 127.\-0.\-0.\-1\-:9090/?insert=1\&id=2\&field=fieldtwo. If it works, the bottom of the page should say \char`\"{}\-Inserted row\-: Id = 2, Field =
+fieldtwo\char`\"{}.
+
+To query a row by Id, navigate to 127.\-0.\-0.\-1\-:9090/?query=1\&id=$\ast$id$\ast$, where {\itshape id} is an int. If it works, the bottom of the page should display a plot of the current data for rows with an Id of {\itshape id}. 
