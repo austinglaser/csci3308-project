@@ -10,6 +10,9 @@ clean:
 
 # follow instructions in sensor/README.md, probably.
 dep:
+	sudo apt-get install python-matplotlib
+	sudo pip install django==1.8.6
+	cd server && python create_db.py && python populate_test_db.py
 
 test: all
 	./run_tests
