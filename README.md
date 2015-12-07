@@ -7,8 +7,8 @@ Outletify is the simplest way to manage and monitor all the household
 technology you depend on. Lower your bills, reduce your environmental
 footprint, and make your life easier by leaving menial tasks to the machines.
 
-Repo layout
------------
+Repo Organization
+-----------------
 doc/
 
 Contains a project description, and is also where auto-doc output goes
@@ -79,4 +79,30 @@ Runs all tests. Invoked by "make test"
 
 run\_server
 
-Run the Django server
+Runs the Django server
+
+Installation
+------------
+
+    git clone https://github.com/austinglaser/csci3308-project.git
+    cd csci3308-project
+    make dep
+    make
+
+Running the Server
+------------------
+
+    ./run_server
+
+Running Tests
+-------------
+
+    make test
+
+Generating Docs
+---------------
+
+    make doc
+
+Documentation is stored in doc/html and doc/latex
+
